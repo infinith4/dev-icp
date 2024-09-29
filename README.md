@@ -15,10 +15,6 @@ source "$HOME/.local/share/dfx/env"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-```
-rustup target add wasm32-unknown-unknown
-```
-
 . "$HOME/.cargo/env"
 
 cargo --version
@@ -47,4 +43,8 @@ dfx new hello_world
 cd src/hello_world/
 
 npm i
+
+dfx deploy --playground
+
+dfx canister --network playground call hello_world_backend greet '("everyone")'
 

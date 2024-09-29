@@ -7,3 +7,5 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
     nvm use --lts && \
     node -v && npm -v && \
     npm i -g yarn
+npm install -g npm@10.8.3
+
