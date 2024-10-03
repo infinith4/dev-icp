@@ -48,3 +48,9 @@ dfx deploy --playground
 
 dfx canister --network playground call hello_world_backend greet '("everyone")'
 
+dfx start --clean --background
+
+dfx deploy hello_world_backend --playground
+
+npm --version
+node --version
