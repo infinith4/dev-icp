@@ -1,11 +1,18 @@
-#### install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# sudo apt-get install expect -y
 
-#### install node
-. $HOME/.nvm/nvm.sh && \
-    nvm install --lts && \
-    nvm use --lts && \
-    node -v && npm -v && \
-    npm i -g yarn
-npm install -g npm@10.8.3
-nvm use --lts
+# #### install nvm
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# #### install node
+# . $HOME/.nvm/nvm.sh && \
+#     nvm install --lts && \
+#     nvm use --lts && \
+#     node -v && npm -v && \
+#     npm i -g yarn
+# npm install -g npm@10.8.3
+# nvm use --lts
+
+# sudo apt-get update
+# sudo apt-get install expect -y
+
+bash ./postCommand2.sh
