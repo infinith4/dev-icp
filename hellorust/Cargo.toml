@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/hellorust_backend"
+]
+resolver = "2"

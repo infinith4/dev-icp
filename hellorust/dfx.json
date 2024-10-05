@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "hellorust_backend": {
+      "candid": "src/hellorust_backend/hellorust_backend.did",
+      "package": "hellorust_backend",
+      "type": "rust"
+    },
+    "hellorust_frontend": {
+      "dependencies": [
+        "hellorust_backend"
+      ],
+      "source": [
+        "src/hellorust_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "hellorust_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

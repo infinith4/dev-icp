@@ -1,0 +1,5 @@
+service : {
+    "greet": (text) -> (text) query;
+    "getMessage": ()-> (text) query;
+    "setMessage": (text)-> ();
+}
