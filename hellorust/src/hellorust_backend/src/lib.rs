@@ -1,12 +1,15 @@
-#[ic_cdk::query]
-fn greet(name: String) -> String {
-    format!("Hello, {}!", name)
-}
+
 use std::cell::RefCell;
 use ic_cdk::{query, update};
 
 thread_local! {
     static STORE: RefCell<String> = RefCell::default();
+}
+
+
+#[ic_cdk::query]
+fn greet(name: String) -> String {
+    format!("Hello, {}!", name)
 }
 
 #[query(name = "getMessage")]
