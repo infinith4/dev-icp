@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "basic-rust-react-backend": {
+      "candid": "src/basic-rust-react-backend/basic-rust-react-backend.did",
+      "package": "basic-rust-react-backend",
+      "type": "rust"
+    },
+    "basic-rust-react-frontend": {
+      "dependencies": [
+        "basic-rust-react-backend"
+      ],
+      "source": [
+        "src/basic-rust-react-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "basic-rust-react-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
