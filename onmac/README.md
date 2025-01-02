@@ -1,5 +1,6 @@
 ### Mac M1
 
+![svg](./icp.drawio.svg)
 
 ```
 sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
@@ -11,29 +12,79 @@ dfx --version
 
 dfx 0.24.3
 
+
+#### create project name
+
 ```
-dfx new testproj01 --type=rust
+dfx new {project name} --type=rust
+```
+
+example : 
+
+```
+dfx new testproj02 --type=rust
+```
+
+```
+cd testproj02
 ```
 
 
-cd testproj01
+## run local server
 
+```
+% dfx start
 
+Running dfx start for version 0.24.3
+Using the default configuration for the local shared network.
+Initialized replica.
+Initialized HTTP gateway.
+Replica API running on 127.0.0.1:4943
+Success! The dfx server is running.
+You must open a new terminal to continue developing. If you'd prefer to stop, quit with 'Ctrl-C'.
+```
+
+#### create canister, build, deploy
+
+open new terminal.
+
+```
+% dfx canister create --all
+Creating canister testproj02_backend...
+testproj02_backend canister created with canister id: a4tbr-q4aaa-aaaaa-qaafq-cai
+Creating canister testproj02_frontend...
+testproj02_frontend canister created with canister id: ajuq4-ruaaa-aaaaa-qaaga-cai
+```
+
+```
 dfx build
+```
 
+If you need to install wasm32, execute below command.
+
+```
 rustup target add wasm32-unknown-unknown
+```
 
+when above command success, re-execute below command.
+ 
+```
 dfx build
+```
+
+deploy to local server.
 
 
+```
 dfx deploy
+```
 
 
 ----------
 
 
-dfx canister create testproj01_frontend
-dfx canister create testproj01_backend
+dfx canister create testproj02_frontend
+dfx canister create testproj02_backend
 dfx build
 dfx start --clean --host 127.0.0.1:8001
 
@@ -42,13 +93,13 @@ dfx start  --clean --background
 
 dfx build
 
-dfx canister create testproj01_backend
+dfx canister create testproj02_backend
 
-dfx canister create testproj01_frontend
+dfx canister create testproj02_frontend
 
 
 ```
-hiroshi@hiroshinoMac-mini testproj01 % dfx help
+hiroshi@hiroshinoMac-mini testproj02 % dfx help
 The DFINITY Executor
 
 Usage: dfx [OPTIONS] <COMMAND>
@@ -114,7 +165,7 @@ Options:
 ```
 
 
-hiroshi@hiroshinoMac-mini testproj01 % dfx start
+hiroshi@hiroshinoMac-mini testproj02 % dfx start
 Running dfx start for version 0.24.3
 Using the default configuration for the local shared network.
 Initialized replica.
@@ -125,7 +176,7 @@ You must open a new terminal to continue developing. If you'd prefer to stop, qu
 
 
 ```
-hiroshi@hiroshinoMac-mini testproj01 % dfx identity new my_identity
+hiroshi@hiroshinoMac-mini testproj02 % dfx identity new my_identity
 Your seed phrase for identity 'my_identity': fantasy tree kite depend pumpkin index weekend recipe disorder duty soda build wait duty process fade outside seek ride because exile burger tool sphere
 This can be used to reconstruct your key in case of emergency, so write it down in a safe place.
 Created identity: "my_identity".
@@ -140,12 +191,12 @@ by6od-j4aaa-aaaaa-qaadq-cai
 
 
 dfx canister create --all
-hiroshi@hiroshinoMac-mini testproj01 % 
+hiroshi@hiroshinoMac-mini testproj02 % 
 dfx canister create --all
-Creating canister testproj01_backend...
-testproj01_backend canister created with canister id: avqkn-guaaa-aaaaa-qaaea-cai
-Creating canister testproj01_frontend...
-testproj01_frontend canister created with canister id: asrmz-lmaaa-aaaaa-qaaeq-cai
+Creating canister testproj02_backend...
+testproj02_backend canister created with canister id: avqkn-guaaa-aaaaa-qaaea-cai
+Creating canister testproj02_frontend...
+testproj02_frontend canister created with canister id: asrmz-lmaaa-aaaaa-qaaeq-cai
 
 dfx build
 
@@ -157,22 +208,22 @@ dfx build
 dfx deploy
 
 
-hiroshi@hiroshinoMac-mini testproj01 % dfx deploy
+hiroshi@hiroshinoMac-mini testproj02 % dfx deploy
 Deploying all canisters.
 All canisters have already been created.
 Building canisters...
 WARN: Cannot check for vulnerabilities in rust canisters because cargo-audit is not installed. Please run 'cargo install cargo-audit' so that vulnerabilities can be detected.
-Executing: cargo build --target wasm32-unknown-unknown --release -p testproj01_backend --locked
+Executing: cargo build --target wasm32-unknown-unknown --release -p testproj02_backend --locked
     Finished `release` profile [optimized] target(s) in 0.12s
 Building frontend...
-WARN: Generating type declarations for canister testproj01_frontend:
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_frontend/testproj01_frontend.did.d.ts
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_frontend/testproj01_frontend.did.js
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_frontend/testproj01_frontend.did
-Generating type declarations for canister testproj01_backend:
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_backend/testproj01_backend.did.d.ts
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_backend/testproj01_backend.did.js
-  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj01/src/declarations/testproj01_backend/testproj01_backend.did
+WARN: Generating type declarations for canister testproj02_frontend:
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_frontend/testproj02_frontend.did.d.ts
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_frontend/testproj02_frontend.did.js
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_frontend/testproj02_frontend.did
+Generating type declarations for canister testproj02_backend:
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_backend/testproj02_backend.did.d.ts
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_backend/testproj02_backend.did.js
+  /Users/hiroshi/projects/github/infinith4/dev-icp/onmac/testproj02/src/declarations/testproj02_backend/testproj02_backend.did
 DEPRECATION WARNING: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
 
 More info: https://sass-lang.com/d/legacy-js-api
@@ -181,8 +232,8 @@ More info: https://sass-lang.com/d/legacy-js-api
 Installing canisters...
 Creating UI canister on the local network.
 The UI canister on the "local" network is "a3shf-5eaaa-aaaaa-qaafa-cai"
-Installing code for canister testproj01_backend, with canister ID avqkn-guaaa-aaaaa-qaaea-cai
-Installing code for canister testproj01_frontend, with canister ID asrmz-lmaaa-aaaaa-qaaeq-cai
+Installing code for canister testproj02_backend, with canister ID avqkn-guaaa-aaaaa-qaaea-cai
+Installing code for canister testproj02_frontend, with canister ID asrmz-lmaaa-aaaaa-qaaeq-cai
 Uploading assets to asset canister...
 WARN: This project uses the default security policy for some assets. While it is set up to work with many applications, it is recommended to further harden the policy to increase security against attacks like XSS.
 WARN: To get started, have a look at 'dfx info canister-security-policy'. It shows the default security policy along with suggestions on how to improve it.
@@ -205,8 +256,8 @@ Committing batch with 13 operations.
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    testproj01_frontend:
+    testproj02_frontend:
       - http://127.0.0.1:4943/?canisterId=asrmz-lmaaa-aaaaa-qaaeq-cai
       - http://asrmz-lmaaa-aaaaa-qaaeq-cai.localhost:4943/
   Backend canister via Candid interface:
-    testproj01_backend: http://127.0.0.1:4943/?canisterId=a3shf-5eaaa-aaaaa-qaafa-cai&id=avqkn-guaaa-aaaaa-qaaea-cai
+    testproj02_backend: http://127.0.0.1:4943/?canisterId=a3shf-5eaaa-aaaaa-qaafa-cai&id=avqkn-guaaa-aaaaa-qaaea-cai
