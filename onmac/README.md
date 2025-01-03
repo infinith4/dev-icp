@@ -80,6 +80,59 @@ dfx deploy
 ```
 
 
+
+
+
+
+
+---------
+
+# specific port
+
+
+
+dfx new testproj02_port --type=rust
+
+```
+dfx start --host 127.0.0.1:7001
+```
+
+
+cd testproj02_port
+dfx canister create --all
+
+dfx build
+dfx deploy
+
+
+
+dfx stop
+
+dfx start --host 127.0.0.1:7001 --clean
+
+
+onmac/testproj02_port/src/testproj02_port_backend/src/lib.rs
+に記載したら、Candid file に反映されないのか
+
+https://internetcomputer.org/docs/current/developer-docs/backend/rust/generating-candid
+
+
+[dependencies]
+ic-cdk = "0.17.1"
+
+cargo install candid-extractor
+
+-----
+
+
+update code
+
+
+`dfx generate` will generate type declarations for all canisters declared in dfx.json.
+
+
+dfx canister install --mode upgrade
+
 ----------
 
 
