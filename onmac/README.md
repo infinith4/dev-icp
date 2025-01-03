@@ -87,11 +87,11 @@ dfx deploy
 
 ---------
 
-# specific port
+# specific port , update canister
 
 
 
-dfx new testproj02_port --type=rust
+dfx new testproj02_update_canister --type=rust
 
 ```
 dfx start --host 127.0.0.1:7001
