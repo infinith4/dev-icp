@@ -8,6 +8,11 @@ fn world(name: String) -> String {
     format!("World, {}!", name)
 }
 
+#[ic_cdk::query]
+fn hello(req: String) -> String {
+    format!("req: {}", req)
+}
+
 // Enable Candid export
 ic_cdk::export_candid!();
 

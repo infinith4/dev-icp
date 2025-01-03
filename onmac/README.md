@@ -117,10 +117,19 @@ onmac/testproj02_port/src/testproj02_port_backend/src/lib.rs
 https://internetcomputer.org/docs/current/developer-docs/backend/rust/generating-candid
 
 
+src/testproj02_update_canister_backend/
+Cargo.toml を編集する
+
+```
 [dependencies]
 ic-cdk = "0.17.1"
+```
 
-cargo install candid-extractor
+
+cargo build --release --target wasm32-unknown-unknown --package testproj02_update_canister_backend
+
+
+hiroshi@hiroshinoMac-mini testproj02_update_canister % candid-extractor target/wasm32-unknown-unknown/release/testproj02_update_canister_backend.wasm > ./src/testproj02_update_canister_backend/testproj02_update_canister_backend.did
 
 -----
 

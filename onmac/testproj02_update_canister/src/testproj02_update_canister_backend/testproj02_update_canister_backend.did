@@ -1,3 +1,5 @@
 service : {
-    "greet": (text) -> (text) query;
+  greet : (text) -> (text) query;
+  hello : (text) -> (text) query;
+  world : (text) -> (text);
 }
