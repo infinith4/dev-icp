@@ -98,7 +98,7 @@ dfx start --host 127.0.0.1:7001
 ```
 
 
-cd testproj02_port
+cd testproj02_update_canister
 dfx canister create --all
 
 dfx build

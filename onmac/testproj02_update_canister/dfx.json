@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "testproj02_update_canister_backend": {
+      "candid": "src/testproj02_update_canister_backend/testproj02_update_canister_backend.did",
+      "package": "testproj02_update_canister_backend",
+      "type": "rust"
+    },
+    "testproj02_update_canister_frontend": {
+      "dependencies": [
+        "testproj02_update_canister_backend"
+      ],
+      "source": [
+        "src/testproj02_update_canister_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "testproj02_update_canister_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
