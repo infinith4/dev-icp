@@ -129,7 +129,114 @@ ic-cdk = "0.17.1"
 cargo build --release --target wasm32-unknown-unknown --package testproj02_update_canister_backend
 
 
-hiroshi@hiroshinoMac-mini testproj02_update_canister % candid-extractor target/wasm32-unknown-unknown/release/testproj02_update_canister_backend.wasm > ./src/testproj02_update_canister_backend/testproj02_update_canister_backend.did
+% candid-extractor target/wasm32-unknown-unknown/release/testproj02_update_canister_backend.wasm > ./src/testproj02_update_canister_backend/testproj02_update_canister_backend.did
+
+
+
+dfx canister call hello_world_backend greet everyone
+
+% dfx canister call testproj02_update_canister_backend world everyone
+("World, everyone!")
+
+
+% dfx canister id testproj02_update_canister_backend
+bkyz2-fmaaa-aaaaa-qaaaq-cai
+
+
+
+dfx canister logs testproj02_update_canister_backend
+
+
+
+
+https://internetcomputer.org/docs/current/developer-docs/backend/rust/quickstart
+
+https://internetcomputer.org/docs/current/developer-docs/getting-started/identities
+
+
+
+インターネット コンピュータ (ICP) では、キャニスターの開発には開発者 ID が不可欠です。開発者 ID は、認証に秘密/公開キーのペアを使用します。公開キーは、メッセージの暗号化に使用されるため、公開して配布できます。秘密キーは秘密に保持し、安全に保管する必要があります。
+
+開発者 ID にはプリンシパルがあります。プリンシパルは、将来的にネットワーク上のユーザー、キャニスター、その他のエンティティを識別するために使用される一般的な識別子の値です。各開発者 ID のプリンシパル値は、ID の公開キーから派生します。
+
+キャニスターが作成およびデプロイされると、キャニスターを作成した開発者 ID は、そのキャニスターのコントローラーとして自動的に設定されます。コントローラーには、次の操作を含むキャニスターの管理権限があります。 
+
+- キャニスターの起動と停止。
+- キャニスター コードのインストールとアップグレード。
+- キャニスターのステータスとログの表示。
+- リソース割り当ての設定やコントローラーの追加など、キャニスターの設定の構成。
+
+他のユーザーと共同でプロジェクトに取り組んでいる場合は、自分の ID のプリンシパルをそのプロジェクトのキャニスターのコントローラーとして追加できます。 キャニスターがデプロイされると、ストレージやコンピューティングなどのリソースが消費されます。キャニスターは、サイクルを使用してこれらのリソースの料金を支払う必要があります。開発者 ID は、サイクルを鋳造してキャニスターに転送するために使用されます。
+
+
+
+dfx identity list
+
+
+dfx identity new IDENTITY_NAME
+
+
+```
+dfx identity new hiblocka
+```
+
+% dfx identity new my_identity
+Your seed phrase for identity 'my_identity': xxxxxxxxxxxxxxxxxxxx
+This can be used to reconstruct your key in case of emergency, so write it down in a safe place.
+Created identity: "my_identity".
+
+
+dfx identity import --seed-file seedphrase.txt
+
+pem
+
+cd ~/.config/dfx/identity/hiblocka
+
+
+dfx identity export hiblocka > ~/.config/dfx/identity/hiblocka/identity.pem
+
+
+https://zenn.dev/halifax/articles/ic_dfx_identity
+
+% dfx identity remove my_identity
+% dfx identity use hiblocka
+% dfx identity whoami
+
+% dfx identity get-principal
+fblhs-ylql7-yw77x-2swpd-ehi4s-m6jra-btsas-k6lgf-6eglu-qkm4f-cae
+
+
+principal とは、Internet ComputerにおけるユーザーやCanister等の識別子です。ユーザーの場合は秘密鍵とペアの公開鍵から一意に導出されます。
+
+
+% dfx identity get-wallet
+Creating a wallet canister on the local network.
+br5f7-7uaaa-aaaaa-qaaca-cai
+The wallet canister on the "local" network for user "hiblocka" is "br5f7-7uaaa-aaaaa-qaaca-cai"
+
+
+次に、サイクルを取得する必要があります。サイクルは、キャニスターが消費するリソースの支払いに必要です。
+
+Internet Computer には、ICP トークン、サイクル、ICRC トークンの 3 種類のトークン資産があります。
+ICP とサイクルは、キャニスターの展開と保守に必要であるため、すべての開発者が理解して使用することが最も重要です。 
+ICP トークンが重要なのは、サイクルに変換してキャニスターのリソース消費の支払いに使用できるためです。
+サイクルは、物理ハードウェア、ラック スペース、エネルギー、ストレージ デバイス、帯域幅などのリソースの実際の運用コストを反映します。
+
+ICP はインターネット コンピュータのネイティブ ユーティリティ トークンです。その価値は公開市場で決定されます。ICP トークンは、インターネット コンピュータのガバナンスと経済において重要な役割を果たします。
+
+ICP トークンを使用する主な方法は 3 つあります: 
+
+- ICP をサイクルに変換します。サイクルはキャニスターのリソースの支払いに必要です。すべての dapp 開発者は、メインネットにキャニスターを展開するためにサイクルを取得する必要があります。
+- ICP を他のトークンなどの他の資産と交換します。
+- ネットワーク ガバナンスへの参加と報酬と引き換えに、ニューロンに ICP をステークします。
+
+インターネット コンピュータは、世界中に分散している独立したノード プロバイダーのコミュニティが所有および運営するノードのネットワーク上で動作します。ノード プロバイダーは、ノードの実行と維持に費用を費やし、ハードウェアを購入したり、ノードが使用する電気やネットワーク帯域幅の料金を支払ったりします。インターネット コンピュータは、ICP トークンの形で報酬を発行して配布することで、これらのノード プロバイダーに毎月報酬を支払います。 キャニスターは、メインネットにデプロイされると、これらのノードが提供するリソースを消費します。ICP を持続可能にするために、キャニスターは使用するリソースに対して料金を支払う必要があります。 リソースの消費は ICP トークンではなくサイクルで支払われます。キャニスターが使用されると、そのサイクル バランスは継続的に減少します。最終的には、キャニスターにサイクルを追加する必要があります。 サイクルを取得するには、ICP トークンをサイクルに変換する必要があります。
+
+
+
+
+https://internetcomputer.org/docs/current/developer-docs/getting-started/write-smart-contracts
+
 
 -----
 
@@ -141,6 +248,8 @@ update code
 
 
 dfx canister install --mode upgrade
+
+
 
 ----------
 

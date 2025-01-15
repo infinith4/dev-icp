@@ -1,3 +1,49 @@
+
+
+新しいプロジェクトの作成
+
+```
+dfx new testproj01
+```
+
+vscode ➜ /src (develop) $ dfx new testproj01
+✔ Select a backend language: · Rust
+✔ Select a frontend framework: · React
+
+```
+cd testproj01
+dfx start
+```
+
+
+```
+dfx start --clean --background
+
+dfx canister create testproj01_backend
+
+dfx canister create testproj01_frontend
+```
+
+
+```
+
+rustup target add wasm32-unknown-unknown
+
+dfx build testproj01_backend
+dfx build testproj01_frontend
+```
+
+rustup target add wasm32-unknown-unknown
+
+dfx deploy testproj01_backend
+
+
+dfx killall
+
+
+---
+
+
 https://internetcomputer.org/docs/current/home
 
 https://internetcomputer.org/docs/current/developer-docs/getting-started/overview-of-icp
@@ -148,4 +194,11 @@ hellorust_frontend canister created with canister id: bd3sg-teaaa-aaaaa-qaaba-ca
 Building canisters...
 WARN: Cannot check for vulnerabilities in rust canisters because cargo-audit is not installed. Please run 'cargo install cargo-audit' so that vulnerabilities can be detected.
 Executing: cargo build --target wasm32-unknown-unknown --release -p hellorust_backend --locked
+```
+
+
+
+```
+dfx stop
+dfx killall
 ```
